@@ -1,0 +1,22 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Credentials & Secrets
+.env
+credentials/
+*.json
+
+# Data files (quản lý qua Drive)
+data/raw/**/*.xlsx
+data/raw/**/*.csv
+data/processed/**/*.xlsx
+data/processed/**/*.csv
+
+# Giữ cấu trúc thư mục
+!data/**/.gitkeep
+
+# OS
+Thumbs.db
+.DS_Store

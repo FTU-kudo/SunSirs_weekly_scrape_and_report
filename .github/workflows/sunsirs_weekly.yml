@@ -1,0 +1,31 @@
+name: 📊 SunSirs Weekly Scrape
+
+on:
+  schedule:
+    # 20:00 Chủ Nhật giờ Việt Nam (UTC+7) = 13:00 UTC Chủ Nhật
+    - cron: '0 13 * * 0'
+  workflow_dispatch:  # Cho phép chạy thủ công từ GitHub UI
+
+jobs:
+  scrape-sunsirs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run SunSirs scraper
+        run: python src/commodities/sunsirs_scraper.py
+        env:
+          GDRIVE_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}
+          GDRIVE_FOLDER_ID_RAW: ${{ secrets.GDRIVE_FOLDER_ID_RAW }}
+          GDRIVE_FOLDER_ID_PROCESSED: ${{ secrets.GDRIVE_FOLDER_ID_PROCESSED }}
