@@ -27,11 +27,7 @@ jobs:
 
       - name: Run SunSirs scraper
         run: python src/commodities/sunsirs_scraper.py
-        env:
-          GDRIVE_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}
-          GDRIVE_FOLDER_ID_RAW: ${{ secrets.GDRIVE_FOLDER_ID_RAW }}
-          GDRIVE_FOLDER_ID_PROCESSED: ${{ secrets.GDRIVE_FOLDER_ID_PROCESSED }}
-
+       
       - name: Commit data về repo
         run: |
           git config user.name "github-actions[bot]"
