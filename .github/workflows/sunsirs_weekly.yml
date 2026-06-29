@@ -1,16 +1,18 @@
-name: 📊 SunSirs Weekly Scrape
+name: 📊 SunSirs Weekly Scrape & Report
 
 on:
   schedule:
-    # 20:00 Chủ Nhật giờ Việt Nam (UTC+7) = 13:00 UTC Chủ Nhật
-    - cron: '0 13 * * 0'
-  workflow_dispatch:  # Cho phép chạy thủ công từ GitHub UI
+    - cron: '0 13 * * 0'   # 20:00 CN giờ VN (UTC+7)
+  workflow_dispatch:
 
 jobs:
+  # ─────────────────────────────────────────
+  # JOB 1: Scrape data + commit về repo
+  # ─────────────────────────────────────────
   scrape-sunsirs:
     runs-on: ubuntu-latest
     permissions:
-      contents: write        # ← thêm 2 dòng này
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -27,7 +29,7 @@ jobs:
 
       - name: Run SunSirs scraper
         run: python src/commodities/sunsirs_scraper.py
-       
+
       - name: Commit data về repo
         run: |
           git config user.name "github-actions[bot]"
@@ -35,3 +37,43 @@ jobs:
           git add data/
           git diff --staged --quiet || git commit -m "🤖 Auto update SunSirs $(date +%Y-%m-%d)"
           git push
+
+      - name: Upload parquet artifact (cho job 2 dùng)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sunsirs-raw
+          path: data/raw/commodities/sunsirs/sunsirs_raw.parquet
+          retention-days: 1
+
+  # ─────────────────────────────────────────
+  # JOB 2: Gửi email báo cáo XLSX
+  # (chạy ngay sau khi Job 1 hoàn thành)
+  # ─────────────────────────────────────────
+  send-email:
+    needs: scrape-sunsirs    # ← chờ Job 1 xong mới chạy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pandas pyarrow openpyxl
+
+      - name: Download parquet từ Job 1
+        uses: actions/download-artifact@v4
+        with:
+          name: sunsirs-raw
+          path: data/raw/commodities/sunsirs/
+
+      - name: Gửi email báo cáo XLSX
+        run: python src/reports/send_report.py
+        env:
+          GMAIL_USER:         ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECIPIENT_EMAILS:   ${{ secrets.RECIPIENT_EMAILS }}
