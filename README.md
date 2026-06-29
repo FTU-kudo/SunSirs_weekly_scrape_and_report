@@ -144,4 +144,4 @@ pyarrow
 
 ## 📄 Data Source
 
-Data sourced from [SunSirs — China Commodity Data Group](https://sunsirs.com/en/).
+Data sourced from [SunSirs — China Commodity Data Group](https://sunsirs.com/).
