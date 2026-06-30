@@ -213,15 +213,17 @@ def send_email():
     # ── Soạn email ────────────────────────────────────────────────────────────
     msg              = MIMEMultipart()
     msg["From"]      = gmail_user
-    msg["To"]        = ", ".join(recipients)
-    msg["Subject"]   = f"Báo cáo giá hàng hoá SunSirs – {today.strftime('%d/%m/%Y')}"
+    msg["To"]        = gmail_user          # ← hiện tên người gửi, không lộ ai khác
+    msg["Subject"]   = f"[YSVN] Báo cáo giá hàng hoá SunSirs – {today.strftime('%d/%m/%Y')}"
+    # Lưu ý: recipients thật sự nằm trong BCC khi gửi (smtp.sendmail bên dưới)
+    # Không thêm msg["Bcc"] vì header Bcc nếu set sẽ vẫn lộ trong email — để trống là đúng
 
     body = f"""Kính gửi Quý khách hàng,
 
 Đính kèm là báo cáo cập nhật giá hàng hoá từ SunSirs tính đến ngày {today.strftime('%d/%m/%Y')}.
 
 Danh sách hàng hoá:
-  • Urea
+  • Urea (Urê)
   • Phosphorus yellow (Phốt pho vàng)
   • Phosphoric acid (Axit phốt pho ric)
   • Hydrochloric acid (Axit clohidric)
