@@ -4,8 +4,8 @@
 ║                                                                  ║
 ║  Chạy: python src/commodities/sunsirs_scraper.py                 ║
 ║                                                                  ║
-║  Lần đầu  → scrape từ 2024-01-01 đến hôm nay (~45 phút)         ║
-║  Lần sau  → chỉ scrape ngày mới kể từ lần lưu cuối              ║
+║  Lần đầu  → scrape từ 2024-01-01 đến hôm nay (~45 phút)          ║
+║  Lần sau  → chỉ scrape ngày mới kể từ lần lưu cuối               ║
 ║                                                                  ║
 ║  Output:                                                         ║
 ║    data/raw/commodities/sunsirs/sunsirs_raw.parquet              ║
