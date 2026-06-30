@@ -73,8 +73,9 @@ jobs:
           path: data/raw/commodities/sunsirs/
 
       - name: Gửi email báo cáo XLSX
-        run: python src/reports/send_report.py
+        run: python -u src/reports/send_report.py
         env:
+          PYTHONUNBUFFERED:   "1"
           GMAIL_USER:         ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           RECIPIENT_EMAILS:   ${{ secrets.RECIPIENT_EMAILS }}
