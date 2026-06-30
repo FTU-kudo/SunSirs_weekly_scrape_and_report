@@ -257,8 +257,8 @@ Vietnam Equity Research | YSVN
         smtp.sendmail(gmail_user, recipients, msg.as_string())
 
     log.info("✅ Email đã gửi thành công!")
-    log.info("   Người nhận : %s", ", ".join(recipients))
-    log.info("   File đính kèm: %s", filename)
+    log.info("   Số người nhận : %d", len(recipients))
+    log.info("   File đính kèm  : %s", filename)
 
 
 # ──────────────────────────────────────────────────────────────────────────────
