@@ -1,8 +1,6 @@
 name: 📊 SunSirs Weekly Scrape & Report
 
 on:
-  schedule:
-    - cron: '0 13 * * 0'   # 20:00 CN giờ VN (UTC+7)
   workflow_dispatch:
 
 jobs:
