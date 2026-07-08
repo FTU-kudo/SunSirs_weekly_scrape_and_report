@@ -4,7 +4,7 @@
 ║                                                                  ║
 ║  Chạy: python src/commodities/sunsirs_scraper.py                 ║
 ║                                                                  ║
-║  Lần đầu  → scrape từ 2024-01-01 đến hôm nay (~45 phút)          ║
+║  Lần đầu  → scrape từ 2019-01-01 đến hôm nay (~45 phút)          ║
 ║  Lần sau  → chỉ scrape ngày mới kể từ lần lưu cuối               ║
 ║                                                                  ║
 ║  Output:                                                         ║
@@ -50,7 +50,7 @@ SELECTED_CSV = PROCESSED_COMMOD / "selected_commodity_prices.csv"  # thay thế 
 # ──────────────────────────────────────────────────────────────────────────────
 # Cấu hình — chỉnh sửa tại đây
 # ──────────────────────────────────────────────────────────────────────────────
-SERIES_START = date(2024, 1, 1)    # ngày bắt đầu scrape lần đầu
+SERIES_START = date(2019, 1, 1)    # ngày bắt đầu scrape lần đầu
 TODAY        = date.today()
 
 DELAY_MIN    = 1.5     # giây chờ giữa các request (tối thiểu)
