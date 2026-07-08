@@ -62,11 +62,12 @@ RETRY_WAIT   = 10      # giây chờ trước khi retry
 # Key = tên cần tìm (khớp một phần, không phân biệt hoa/thường)
 # Value = tên cột trong file output
 COMMODITIES_WANTED = {
-    "Urea"              : "Urea",
-    "Phosphorus yellow" : "Phosphorus yellow",
-    "Phosphoric acid"   : "Phosphoric acid",
-    "Hydrochloric acid" : "Hydrochloric acid",
-    "Sulfuric acid"     : "Sulfuric acid",
+    "Urea"                          : "Urea",
+    "Phosphorus yellow"             : "Phosphorus yellow",
+    "Phosphoric acid"               : "Phosphoric acid",
+    "Hydrochloric acid"             : "Hydrochloric acid",
+    "Sulfuric acid"                 : "Sulfuric acid",
+    "White granulated sugar"        : "White granulated sugar",    
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
