@@ -45,11 +45,12 @@ RAW_PARQUET = BASE_DIR / "data" / "raw" / "commodities" / "sunsirs" / "sunsirs_r
 # Hàng hoá cần xuất — giữ đồng bộ với sunsirs_scraper.py
 # ──────────────────────────────────────────────────────────────────────────────
 COMMODITIES_WANTED = {
-    "Urea"              : "Urea",
-    "Phosphorus yellow" : "Phosphorus yellow",
-    "Phosphoric acid"   : "Phosphoric acid",
-    "Hydrochloric acid" : "Hydrochloric acid",
-    "Sulfuric acid"     : "Sulfuric acid",
+    "Urea"                          : "Urea",
+    "Phosphorus yellow"             : "Phosphorus yellow",
+    "Phosphoric acid"               : "Phosphoric acid",
+    "Hydrochloric acid"             : "Hydrochloric acid",
+    "Sulfuric acid"                 : "Sulfuric acid",
+    "White granulated sugar"        : "White granulated sugar",
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -225,9 +226,10 @@ def send_email():
 Danh sách hàng hoá:
   • Urea (Urê)
   • Phosphorus yellow (Phốt pho vàng)
-  • Phosphoric acid (Axit phốt pho ric)
+  • Phosphoric acid (Axit photphoric)
   • Hydrochloric acid (Axit clohidric)
   • Sulfuric acid (Axit sunfuric)
+  • White granulated sugar (Đường sucrose tinh luyện)
 
 Nguồn dữ liệu : sunsirs.com
 Tần suất cập nhật: Hàng tuần (Chủ Nhật 20:30)
@@ -252,13 +254,12 @@ FTU-Kudo.
     msg.attach(attachment)
 
     # ── Gửi qua Gmail SMTP SSL ───────────────────────────────────────────────
-    log.info("⏳ Đang gửi email tới %d người nhận…", len(recipients))
+    log.info("⏳ Đang gửi email tới người nhận…", len(recipients))
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
         smtp.login(gmail_user, gmail_password)
         smtp.sendmail(gmail_user, recipients, msg.as_string())
 
     log.info("✅ Email đã gửi thành công!")
-    log.info("   Số người nhận : %d", len(recipients))
     log.info("   File đính kèm  : %s", filename)
 
 
