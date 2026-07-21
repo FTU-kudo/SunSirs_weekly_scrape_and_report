@@ -1,6 +1,6 @@
 # 📊 SunSirs Commodity Price Tracker
 
-Automated weekly pipeline that scrapes commodity prices from [SunSirs](https://sunsirs.com/en/) and delivers a formatted Excel report every Sunday at 20:30 (Vietnam time, UTC+7).
+Automated weekly pipeline that scrapes commodity prices from [SunSirs](https://sunsirs.com/uk/) and delivers a formatted Excel report every Sunday at 20:30 (Vietnam time, UTC+7).
 
 ---
 
